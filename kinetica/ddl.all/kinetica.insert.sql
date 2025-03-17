@@ -1,0 +1,46 @@
+INSERT INTO ldbc.forum SELECT * FROM FILE."/scratch/gpudb/persist/external/social_network-sf10-CsvBasic-LongDateFormatter/dynamic/forum_0_0.csv" DELIMITER='|' HEADER=Y BATCH_SIZE=200000;
+INSERT INTO ldbc.organisation SELECT * FROM FILE."/scratch/gpudb/persist/external/social_network-sf10-CsvBasic-LongDateFormatter/static/organisation_0_0.csv" DELIMITER='|' HEADER=Y BATCH_SIZE=200000;
+INSERT INTO ldbc.person SELECT * FROM FILE."/scratch/gpudb/persist/external/social_network-sf10-CsvBasic-LongDateFormatter/dynamic/person_0_0.csv" DELIMITER='|' HEADER=Y BATCH_SIZE=200000;
+INSERT INTO ldbc.place SELECT * FROM FILE."/scratch/gpudb/persist/external/social_network-sf10-CsvBasic-LongDateFormatter/static/place_0_0.csv" DELIMITER='|' HEADER=Y BATCH_SIZE=200000;
+INSERT INTO ldbc.tagclass SELECT * FROM FILE."/scratch/gpudb/persist/external/social_network-sf10-CsvBasic-LongDateFormatter/static/tagclass_0_0.csv" DELIMITER='|' HEADER=Y BATCH_SIZE=200000;
+INSERT INTO ldbc.tag SELECT * FROM FILE."/scratch/gpudb/persist/external/social_network-sf10-CsvBasic-LongDateFormatter/static/tag_0_0.csv" DELIMITER='|' HEADER=Y BATCH_SIZE=200000;
+INSERT INTO ldbc.post SELECT * FROM FILE."/scratch/gpudb/persist/external/social_network-sf10-CsvBasic-LongDateFormatter/dynamic/post_0_0.csv" DELIMITER='|' HEADER=Y BATCH_SIZE=200000;
+INSERT INTO ldbc.comment SELECT * FROM FILE."/scratch/gpudb/persist/external/social_network-sf10-CsvBasic-LongDateFormatter/dynamic/comment_0_0.csv" DELIMITER='|' HEADER=Y BATCH_SIZE=200000;
+
+INSERT INTO ldbc.organisation_isLocatedIn_place SELECT * FROM FILE."/scratch/gpudb/persist/external/social_network-sf10-CsvBasic-LongDateFormatter/static/organisation_isLocatedIn_place_0_0.csv" DELIMITER='|' HEADER=Y BATCH_SIZE=200000;
+INSERT INTO ldbc.place_isPartOf_place SELECT * FROM FILE."/scratch/gpudb/persist/external/social_network-sf10-CsvBasic-LongDateFormatter/static/place_isPartOf_place_0_0.csv" DELIMITER='|' HEADER=Y BATCH_SIZE=200000;
+INSERT INTO ldbc.tag_hasType_tagclass SELECT * FROM FILE."/scratch/gpudb/persist/external/social_network-sf10-CsvBasic-LongDateFormatter/static/tag_hasType_tagclass_0_0.csv" DELIMITER='|' HEADER=Y BATCH_SIZE=200000;
+INSERT INTO ldbc.tagclass_isSubclassOf_tagclass SELECT * FROM FILE."/scratch/gpudb/persist/external/social_network-sf10-CsvBasic-LongDateFormatter/static/tagclass_isSubclassOf_tagclass_0_0.csv" DELIMITER='|' HEADER=Y BATCH_SIZE=200000;
+
+INSERT INTO ldbc.comment_hasCreator_person SELECT * FROM FILE."/scratch/gpudb/persist/external/social_network-sf10-CsvBasic-LongDateFormatter/dynamic/comment_hasCreator_person_0_0.csv" DELIMITER='|' HEADER=Y BATCH_SIZE=200000;
+INSERT INTO ldbc.comment_hasTag_tag SELECT * FROM FILE."/scratch/gpudb/persist/external/social_network-sf10-CsvBasic-LongDateFormatter/dynamic/comment_hasTag_tag_0_0.csv" DELIMITER='|' HEADER=Y BATCH_SIZE=200000;
+INSERT INTO ldbc.comment_isLocatedIn_place SELECT * FROM FILE."/scratch/gpudb/persist/external/social_network-sf10-CsvBasic-LongDateFormatter/dynamic/comment_isLocatedIn_place_0_0.csv" DELIMITER='|' HEADER=Y BATCH_SIZE=200000;
+INSERT INTO ldbc.comment_replyOf_comment SELECT * FROM FILE."/scratch/gpudb/persist/external/social_network-sf10-CsvBasic-LongDateFormatter/dynamic/comment_replyOf_comment_0_0.csv" DELIMITER='|' HEADER=Y BATCH_SIZE=200000;
+INSERT INTO ldbc.comment_replyOf_post SELECT * FROM FILE."/scratch/gpudb/persist/external/social_network-sf10-CsvBasic-LongDateFormatter/dynamic/comment_replyOf_post_0_0.csv" DELIMITER='|' HEADER=Y BATCH_SIZE=200000;
+INSERT INTO ldbc.forum_containerOf_post SELECT * FROM FILE."/scratch/gpudb/persist/external/social_network-sf10-CsvBasic-LongDateFormatter/dynamic/forum_containerOf_post_0_0.csv" DELIMITER='|' HEADER=Y BATCH_SIZE=200000;
+INSERT INTO ldbc.forum_hasMember_person SELECT * FROM FILE."/scratch/gpudb/persist/external/social_network-sf10-CsvBasic-LongDateFormatter/dynamic/forum_hasMember_person_0_0.csv" DELIMITER='|' HEADER=Y BATCH_SIZE=200000;
+INSERT INTO ldbc.forum_hasModerator_person SELECT * FROM FILE."/scratch/gpudb/persist/external/social_network-sf10-CsvBasic-LongDateFormatter/dynamic/forum_hasModerator_person_0_0.csv" DELIMITER='|' HEADER=Y BATCH_SIZE=200000;
+INSERT INTO ldbc.forum_hasTag_tag SELECT * FROM FILE."/scratch/gpudb/persist/external/social_network-sf10-CsvBasic-LongDateFormatter/dynamic/forum_hasTag_tag_0_0.csv" DELIMITER='|' HEADER=Y BATCH_SIZE=200000;
+INSERT INTO ldbc.person_email_emailaddress SELECT * FROM FILE."/scratch/gpudb/persist/external/social_network-sf10-CsvBasic-LongDateFormatter/dynamic/person_email_emailaddress_0_0.csv" DELIMITER='|' HEADER=Y BATCH_SIZE=200000;
+INSERT INTO ldbc.person_hasInterest_tag SELECT * FROM FILE."/scratch/gpudb/persist/external/social_network-sf10-CsvBasic-LongDateFormatter/dynamic/person_hasInterest_tag_0_0.csv" DELIMITER='|' HEADER=Y BATCH_SIZE=200000;
+INSERT INTO ldbc.person_isLocatedIn_place SELECT * FROM FILE."/scratch/gpudb/persist/external/social_network-sf10-CsvBasic-LongDateFormatter/dynamic/person_isLocatedIn_place_0_0.csv" DELIMITER='|' HEADER=Y BATCH_SIZE=200000;
+INSERT INTO ldbc.person_knows_person (Person_id_0, Person_id_1, creationDate) SELECT * FROM FILE."/scratch/gpudb/persist/external/social_network-sf10-CsvBasic-LongDateFormatter/dynamic/person_knows_person_0_0.csv" DELIMITER='|' HEADER=Y BATCH_SIZE=200000;
+INSERT INTO ldbc.person_knows_person (Person_id_1, Person_id_0, creationDate) SELECT * FROM FILE."/scratch/gpudb/persist/external/social_network-sf10-CsvBasic-LongDateFormatter/dynamic/person_knows_person_0_0.csv" DELIMITER='|' HEADER=Y BATCH_SIZE=200000;
+
+INSERT INTO ldbc.person_likes_comment SELECT * FROM FILE."/scratch/gpudb/persist/external/social_network-sf10-CsvBasic-LongDateFormatter/dynamic/person_likes_comment_0_0.csv" DELIMITER='|' HEADER=Y BATCH_SIZE=200000;
+INSERT INTO ldbc.person_likes_post SELECT * FROM FILE."/scratch/gpudb/persist/external/social_network-sf10-CsvBasic-LongDateFormatter/dynamic/person_likes_post_0_0.csv" DELIMITER='|' HEADER=Y BATCH_SIZE=200000;
+INSERT INTO ldbc.person_speaks_language SELECT * FROM FILE."/scratch/gpudb/persist/external/social_network-sf10-CsvBasic-LongDateFormatter/dynamic/person_speaks_language_0_0.csv" DELIMITER='|' HEADER=Y BATCH_SIZE=200000;
+INSERT INTO ldbc.person_studyAt_organisation SELECT * FROM FILE."/scratch/gpudb/persist/external/social_network-sf10-CsvBasic-LongDateFormatter/dynamic/person_studyAt_organisation_0_0.csv" DELIMITER='|' HEADER=Y BATCH_SIZE=200000;
+INSERT INTO ldbc.person_workAt_organisation SELECT * FROM FILE."/scratch/gpudb/persist/external/social_network-sf10-CsvBasic-LongDateFormatter/dynamic/person_workAt_organisation_0_0.csv" DELIMITER='|' HEADER=Y BATCH_SIZE=200000;
+INSERT INTO ldbc.post_hasCreator_person SELECT * FROM FILE."/scratch/gpudb/persist/external/social_network-sf10-CsvBasic-LongDateFormatter/dynamic/post_hasCreator_person_0_0.csv" DELIMITER='|' HEADER=Y BATCH_SIZE=200000;
+INSERT INTO ldbc.post_hasTag_tag SELECT * FROM FILE."/scratch/gpudb/persist/external/social_network-sf10-CsvBasic-LongDateFormatter/dynamic/post_hasTag_tag_0_0.csv" DELIMITER='|' HEADER=Y BATCH_SIZE=200000;
+INSERT INTO ldbc.post_isLocatedIn_place SELECT * FROM FILE."/scratch/gpudb/persist/external/social_network-sf10-CsvBasic-LongDateFormatter/dynamic/post_isLocatedIn_place_0_0.csv" DELIMITER='|' HEADER=Y BATCH_SIZE=200000;
+
+
+create or replace materialized view ldbc.messages as (
+    SELECT m_messageid, m_ps_imagefile, m_creationdate, m_location_ip, m_browserused, m_ps_language, m_content, m_length, Person_id as m_creatorid, Place_id asm_locationid , Forum_id as m_ps_forumid, NULL AS m_c_replyof
+    FROM ldbc.post_mv
+    UNION ALL
+    SELECT m_messageid, NULL, m_creationdate, m_locationip, m_browserused, NULL, m_content, m_length, Person_id, Place_id, NULl, coalesce(Comment_id_1, Post_id)
+    FROM ldbc.comment_mv
+)
