@@ -61,7 +61,7 @@ create or replace materialized view ldbc.place_mv as (
 );
 */
 
-create or replace materialized view ldbc.messages as (
+create or replace materialized view ldbc.messages_mv as (
     SELECT m_messageid, m_ps_imagefile, m_creationdate, m_location_ip, m_browserused, m_ps_language, m_content, m_length, Person_id, Place_id as Place_id, Forum_id, NULL AS m_c_replyof, 'post' as m_type
     FROM ldbc.post_mv
     UNION ALL
