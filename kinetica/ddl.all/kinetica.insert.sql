@@ -35,12 +35,3 @@ INSERT INTO ldbc.person_workAt_organisation SELECT * FROM FILE."/scratch/gpudb/p
 INSERT INTO ldbc.post_hasCreator_person SELECT * FROM FILE."/scratch/gpudb/persist/external/social_network-sf10-CsvBasic-LongDateFormatter/dynamic/post_hasCreator_person_0_0.csv" DELIMITER='|' HEADER=Y BATCH_SIZE=200000;
 INSERT INTO ldbc.post_hasTag_tag SELECT * FROM FILE."/scratch/gpudb/persist/external/social_network-sf10-CsvBasic-LongDateFormatter/dynamic/post_hasTag_tag_0_0.csv" DELIMITER='|' HEADER=Y BATCH_SIZE=200000;
 INSERT INTO ldbc.post_isLocatedIn_place SELECT * FROM FILE."/scratch/gpudb/persist/external/social_network-sf10-CsvBasic-LongDateFormatter/dynamic/post_isLocatedIn_place_0_0.csv" DELIMITER='|' HEADER=Y BATCH_SIZE=200000;
-
-
-create or replace materialized view ldbc.messages as (
-    SELECT m_messageid, m_ps_imagefile, m_creationdate, m_location_ip, m_browserused, m_ps_language, m_content, m_length, Person_id as m_creatorid, Place_id asm_locationid , Forum_id as m_ps_forumid, NULL AS m_c_replyof
-    FROM ldbc.post_mv
-    UNION ALL
-    SELECT m_messageid, NULL, m_creationdate, m_locationip, m_browserused, NULL, m_content, m_length, Person_id, Place_id, NULl, coalesce(Comment_id_1, Post_id)
-    FROM ldbc.comment_mv
-)
