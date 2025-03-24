@@ -17,7 +17,6 @@ FROM query_graph( graph => 'ldbc.graph',
     queries => input_tables
     (
         (SELECT CONCAT('3298541986358','_m') as NODE_NAME)
-        ,(SELECT 'message' as EDGE_LABEL)
     ),
     rings => 0, options => kv_pairs(find_common_labels = 'true', result_table_index = '2') 
 ) s 
