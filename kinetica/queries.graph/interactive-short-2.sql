@@ -23,7 +23,7 @@ RETURN
 ORDER BY messageCreationDate DESC, messageId ASC
 */
 
-
+-- Get latest 10 messages
 CREATE OR REPLACE TABLE ldbc._2_q1 as 
 (
     SELECT s.*, m_creationdate
@@ -40,6 +40,7 @@ CREATE OR REPLACE TABLE ldbc._2_q1 as
     ORDER by m_creationdate DESC
     LIMIT 10
 );
+-- Get all original posts of the above 10 messages
 CREATE OR REPLACE TABLE ldbc._2_q2 as 
 (
     /* KI_HINT_NO_PARALLEL_EXECUTION */ 
@@ -72,6 +73,8 @@ CREATE OR REPLACE TABLE ldbc._2_q2 as
     )
     WHERE LABELS = 'post'
 );
+
+-- Get all distinct creators of those posts
 CREATE OR REPLACE TABLE ldbc._2_q3 as 
 (
     SELECT DISTINCT *
@@ -84,10 +87,12 @@ CREATE OR REPLACE TABLE ldbc._2_q3 as
     ) s
 ); 
 
+
 -- Do this to force replication in later steps
 CREATE OR REPLACE Materialized view ldbc._2_q4mv as (
     SELECT 
-    p.p_personid
+    SPLIT(q2.QUERY_NODE_NAME_TARGET,'_',1) as postId
+    ,p.p_personid
     ,p.p_firstname
     ,p.p_lastname
     ,q2.joinkey
@@ -102,6 +107,7 @@ CREATE OR REPLACE Materialized view ldbc._2_q5mv as (
     m2.m_messageid
     ,coalesce(m2.m_content,m2.m_ps_imagefile) as m_content
     ,m2.m_creationdate
+    ,postId
     ,p_personid
     ,p_firstname
     ,p_lastname
@@ -110,13 +116,6 @@ INNER JOIN ldbc.messages m2 on _2_q4mv.joinkey = CHAR64(CONCAT(m2.m_messageid,'_
 );
 
 SELECT 
-    _2_q5mv.m_messageid
-    ,_2_q5mv.m_content
-    ,_2_q5mv.m_creationdate
-    ,m3.m_messageid as postid
-    ,_2_q5mv.p_personid
-    ,_2_q5mv.p_firstname
-    ,_2_q5mv.p_lastname
-FROM ldbc.messages m3
-INNER JOIN ldbc._2_q5mv _2_q5mv ON m3.m_messageid = _2_q5mv.m_messageid
+    *
+FROM ldbc._2_q5mv
 ORDER BY m_creationdate DESC, m_messageid DESC
